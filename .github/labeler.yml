@@ -1,0 +1,20 @@
+ci/cd:
+  - .github/workflows/*
+
+repo:
+  - '*'
+
+packages:
+  - "packages/**"
+
+traverse:
+  - "packages/traverse/**"
+
+documentation:
+  - README.md
+  - ./**/*.md
+
+test:
+  - tests/**
+  - "**/*.spec.ts"
+  - "**/*.integ.spec.ts"
