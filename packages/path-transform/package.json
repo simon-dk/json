@@ -2,13 +2,12 @@
   "name": "@json/path-transform",
   "version": "0.0.0",
   "private": true,
-  "main": "index.node",
-  "mainold": "./dist/index.js",
+  "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
-    "test": "jest",
+    "test": "tsc --noEmit && jest",
     "test:watch": "jest --watch",
     "benchmark": "npx ts-node benchmark/index.ts"
   },

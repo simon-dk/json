@@ -1,6 +1,8 @@
 import { traverse } from '@json/traverse';
 import { JSONPath } from 'jsonpath-plus';
 
+import { DeepIfStartsWithDollar } from './types';
+
 export interface PathTransformProps {
   /**
    * If there is a single return value, decide if it should be wrapped in an array.
@@ -18,14 +20,19 @@ export interface PathTransformProps {
   flatten?: boolean;
 }
 
-export class PathTransform {
-  private schema: object;
+export class PathTransform<T extends object> {
+  /**
+   * Represents the schema object used for transformation.
+   *
+   * By using "as const" you can infer the resulting structure. Values that start with "$" are treated as "unknown" and are not inferred.
+   */
+  private schema: T;
 
   public readonly wrap: boolean;
 
   public readonly flatten: boolean;
 
-  constructor(schema: object, props?: PathTransformProps) {
+  constructor(schema: T, props?: PathTransformProps) {
     this.schema = schema;
     this.wrap = props?.wrap ?? false;
     this.flatten = props?.flatten ?? false;
@@ -72,7 +79,7 @@ export class PathTransform {
           }
         }
       }
-    });
+    }) as DeepIfStartsWithDollar<typeof this.schema>;
   }
 }
 
@@ -82,11 +89,24 @@ export class PathTransform {
  * @param obj The JSON object to traverse.
  * @returns A new instance of Traverse.
  */
-export interface TransformProps extends PathTransformProps {
+/**
+ * Represents the properties required for performing a transformation on a JSON object.
+ * @template T - The type of the schema object.
+ */
+export interface TransformProps<T extends object> extends PathTransformProps {
+  /**
+   * Represents the JSON object to be transformed.
+   */
   json: object;
-  schema: object;
+
+  /**
+   * Represents the schema object used for transformation.
+   *
+   * By using "as const" you can infer the resulting structure. Values that start with "$" are treated as "unknown" and are not inferred.
+   */
+  schema: T;
 }
-export const transform = (props: TransformProps) =>
+export const transform = <T extends object>(props: TransformProps<T>) =>
   new PathTransform(props.schema, {
     wrap: props.wrap,
     flatten: props.flatten,
