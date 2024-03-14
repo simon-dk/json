@@ -90,6 +90,19 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
 
+  packages/path-transform:
+    dependencies:
+      '@json/traverse':
+        specifier: workspace:*
+        version: link:../traverse
+      jsonpath-plus:
+        specifier: ^8.1.0
+        version: 8.1.0
+    devDependencies:
+      '@json/config':
+        specifier: workspace:*
+        version: link:../config
+
   packages/traverse:
     devDependencies:
       '@json/config':
@@ -4862,6 +4875,12 @@ packages:
     optionalDependencies:
       graceful-fs: 4.2.11
     dev: true
+
+  /jsonpath-plus@8.1.0:
+    resolution: {integrity: sha512-qVTiuKztFGw0dGhYi3WNqvddx3/SHtyDT0xJaeyz4uP0d1tkpG+0y5uYQ4OcIo1TLAz3PE/qDOW9F0uDt3+CTw==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    dev: false
 
   /jsx-ast-utils@3.3.5:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
