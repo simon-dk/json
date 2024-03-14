@@ -1,1 +1,1 @@
-export * from "./PathTransform"
+export * from './PathTransform';
