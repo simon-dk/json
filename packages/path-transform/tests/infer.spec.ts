@@ -72,3 +72,17 @@ it('should infer nested static properties', () => {
 
   expect(result).toEqual(expected);
 });
+
+it('should infer as strings when not using as const', () => {
+  const schema = {
+    nested: { value: 'here', bicyclePrice: '$.store.bicycle.price' },
+  };
+
+  const expected = { nested: { value: 'here', bicyclePrice: 19.95 } };
+  const result = transform({ json, schema });
+
+  type Book1Test = Expect<Equal<typeof result.nested.value, string>>;
+  type Book2Test = Expect<Equal<typeof result.nested.bicyclePrice, string>>;
+
+  expect(result).toEqual(expected);
+});
