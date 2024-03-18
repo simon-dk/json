@@ -1,5 +1,5 @@
 {
-  "name": "@json/path-transform",
+  "name": "@saxs/json-path-transform",
   "version": "0.1.1",
   "description": "Transform JSON objects using JSONPath syntax",
   "license":"MIT",
@@ -21,7 +21,7 @@
     "benchmark": "npx ts-node benchmark/index.ts"
   },
   "dependencies": {
-    "@json/traverse": "workspace:*",
+    "@saxs/json-traverse": "workspace:*",
     "jsonpath-plus": "^8.1.0"
   },
   "devDependencies": {

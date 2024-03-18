@@ -92,7 +92,7 @@ importers:
 
   packages/json-path-transform:
     dependencies:
-      '@json/traverse':
+      '@saxs/json-traverse':
         specifier: workspace:*
         version: link:../json-traverse
       jsonpath-plus:

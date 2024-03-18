@@ -1,4 +1,4 @@
-import { traverse } from '@json/traverse';
+import { traverse } from '@saxs/json-traverse';
 import { JSONPath } from 'jsonpath-plus';
 
 import type { SchemaObject, TransformFn } from './types';

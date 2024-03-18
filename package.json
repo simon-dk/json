@@ -1,5 +1,5 @@
 {
-  "name": "json",
+  "name": "json-monorepo",
   "private": true,
   "scripts": {
     "build": "turbo build",
