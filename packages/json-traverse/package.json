@@ -1,5 +1,5 @@
 {
-  "name": "@json/traverse",
+  "name": "@saxs/json-traverse",
   "version": "0.1.0",
   "description": "Traverse JSON objects",
   "license": "MIT",
