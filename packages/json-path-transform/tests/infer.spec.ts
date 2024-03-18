@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PathTransform } from '../src/PathTransform';
+import type { SchemaObject } from '../src/types';
 
-// helper functions to test type inference
+// helper types to test type inference
 type Expect<T extends true> = T;
 type ExpectNot<T extends false> = T;
-
+type Satisfies<T, U> = T extends U ? true : false;
 type Equal<X, Y> =
   (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ? 1 : 2
     ? true
@@ -55,8 +56,8 @@ it('should be able to infer static propeties', () => {
   const book1 = result.books[0];
   const book2 = result.books[1];
 
-  type Book1Test = Expect<Equal<typeof book1, 'foo'>>;
-  type Book2Test = Expect<Equal<typeof book2, unknown>>;
+  type Test1 = Expect<Equal<typeof book1, 'foo'>>;
+  type Test2 = Expect<Equal<typeof book2, unknown>>;
 
   expect(book1).toEqual('foo');
   expect(book2).toEqual(result.books[1]);
@@ -70,8 +71,8 @@ it('should infer nested static properties', () => {
   const expected = { nested: { value: 'here', bicyclePrice: 19.95 } };
 
   const result = transformer.transform(json);
-  type Book1Test = Expect<Equal<typeof result.nested.value, 'here'>>;
-  type Book2Test = Expect<Equal<typeof result.nested.bicyclePrice, unknown>>;
+  type Test1 = Expect<Equal<typeof result.nested.value, 'here'>>;
+  type Test2 = Expect<Equal<typeof result.nested.bicyclePrice, unknown>>;
 
   expect(result).toEqual(expected);
 });
@@ -84,8 +85,8 @@ it('should infer as strings when not using as const', () => {
   const expected = { nested: { value: 'here', bicyclePrice: 19.95 } };
 
   const result = transformer.transform(json);
-  type Book1Test = Expect<Equal<typeof result.nested.value, string>>;
-  type Book2Test = Expect<Equal<typeof result.nested.bicyclePrice, string>>;
+  type Test1 = Expect<Equal<typeof result.nested.value, string>>;
+  type Test2 = Expect<Equal<typeof result.nested.bicyclePrice, string>>;
 
   expect(result).toEqual(expected);
 });
@@ -98,9 +99,35 @@ it('should add any key value when using a root key', () => {
   const result = transformer.transform(json);
 
   type Test1 = ExpectNot<Equal<(typeof result)['$'], string>>;
-  type Test2 = Expect<Equal<(typeof result)['$'], unknown>>;
-  type Test3 = Expect<Equal<(typeof result)['foo'], unknown>>;
-  type Test4 = Expect<Equal<(typeof result)['bar'], unknown>>;
+  type Test2 = Expect<Equal<typeof result.$, unknown>>;
+  type Test3 = Expect<Equal<typeof result.foo, unknown>>;
+  type Test4 = Expect<Equal<typeof result.bar, unknown>>;
 
   expect(result).toEqual(expected);
+});
+
+it('should disallow schema with functions or bigint', () => {
+  const schema1 = { foo: () => 1 };
+  const schema2 = { foo: { bar: () => 1 } };
+  const schema3 = { foo: 'bar', big: 1n };
+  const schema4 = { foo: { bar: 1n } };
+
+  type Test1 = ExpectNot<Satisfies<typeof schema1, SchemaObject>>;
+  type Test2 = ExpectNot<Satisfies<typeof schema2, SchemaObject>>;
+  type Test3 = ExpectNot<Satisfies<typeof schema3, SchemaObject>>;
+  type Test4 = ExpectNot<Satisfies<typeof schema4, SchemaObject>>;
+
+  expect(1).toEqual(1);
+});
+
+it('should allow schema with dates, buffer, null', () => {
+  const schema1 = { created: new Date('2024-01-01') };
+  const schema2 = { buffer: Buffer.from('hello world') };
+  const schema3 = { empty: null };
+
+  type Test1 = Expect<Satisfies<typeof schema1, SchemaObject>>;
+  type Test2 = Expect<Satisfies<typeof schema2, SchemaObject>>;
+  type Test3 = Expect<Satisfies<typeof schema3, SchemaObject>>;
+
+  expect(1).toEqual(1);
 });
