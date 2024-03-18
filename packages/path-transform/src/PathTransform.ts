@@ -159,46 +159,4 @@ export class PathTransform<T extends object> {
 
     return this.transformFn(json);
   }
-
-  // public transformLegacy(json: object) {
-  //   // eslint-disable-next-line array-callback-return
-  //   return traverse(this.schema).map((value, node) => {
-  //     // We have encountered a json path expression
-  //     if (typeof value === 'string' && value.startsWith('$')) {
-  //       // We are not at the root
-  //       if (node.key !== '$') {
-  //         // Extract the value from the json object
-  //         const result = JSONPath({
-  //           json,
-  //           path: value,
-  //           wrap: this.wrap,
-  //           flatten: this.flatten,
-  //         });
-  //         // If not at a root path we update the node with the result
-  //         node.update(result);
-  //       } else {
-  //         // We are at the root
-
-  //         // Extract the value from the json object with wrap set to false
-  //         const result = JSONPath({ json, path: value, wrap: false });
-
-  //         // For type safety we need to check if the parent is an object
-  //         if (!node.parent?.value || typeof node.parent.value !== 'object') {
-  //           throw new Error('Invalid schema');
-  //         }
-
-  //         // We need to check if the parent has a "$" key
-  //         if (!('$' in node.parent.value)) {
-  //           throw new Error('Invalid schema');
-  //         }
-
-  //         // We remove the "$" key from the parent object and merge the result
-  //         // eslint-disable-next-line no-param-reassign
-  //         delete node.parent.value.$;
-
-  //         Object.assign(node.parent.value, result);
-  //       }
-  //     }
-  //   }) as DeepIfStartsWithDollar<typeof this.schema>;
-  // }
 }
