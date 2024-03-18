@@ -25,4 +25,23 @@ export type DeepIfStartsWithDollar<T> = T extends string
         }
       : T;
 
-export type TransformFn<T> = (json: object) => DeepIfStartsWithDollar<T>;
+// we use Readonly and ReadonlyArray to allow the use of "as const" in the schema
+export type AllowedPrimitives =
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | Buffer
+  | Date;
+
+export type Values =
+  | AllowedPrimitives
+  | { readonly [k: string]: Values }
+  | ReadonlyArray<Values>;
+
+export type SchemaObject = { [key: string]: Values } | ReadonlyArray<Values>;
+
+export type TransformFn<T extends SchemaObject> = (
+  json: object,
+) => DeepIfStartsWithDollar<T>;
