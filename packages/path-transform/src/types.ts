@@ -9,6 +9,7 @@ export type IfStartsWithDollar<T> = T extends `$${string}` ? unknown : T;
  * If it does, it applies the `IfStartsWithDollar` type to that property.
  * If `T` is an array, it recursively applies the `DeepIfStartsWithDollar` type to each element.
  * If `T` is an object, it recursively applies the `DeepIfStartsWithDollar` type to each property.
+ * If `K` is "$", all key/values can potentially be present in the object, so it returns `any`.
  * Otherwise, it returns the original type.
  */
 export type DeepIfStartsWithDollar<T> = T extends string
@@ -16,5 +17,12 @@ export type DeepIfStartsWithDollar<T> = T extends string
   : T extends Array<infer U>
     ? DeepIfStartsWithDollar<U>[]
     : T extends object
-      ? { [K in keyof T]: DeepIfStartsWithDollar<T[K]> }
+      ? {
+          [K in keyof T as K extends '$'
+            ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              any
+            : K]: DeepIfStartsWithDollar<T[K]>;
+        }
       : T;
+
+export type TransformFn<T> = (json: object) => DeepIfStartsWithDollar<T>;
