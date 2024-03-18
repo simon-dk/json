@@ -48,7 +48,6 @@ const schemas = {
   allAuthorsDot: {
     authors: '$.store.book[*].author',
   },
-
   addKey: {
     id: '<some-id>',
     authors: '$.store.book[*].author',
