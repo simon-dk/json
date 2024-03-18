@@ -1,7 +1,7 @@
 import { traverse } from '@json/traverse';
 import { JSONPath } from 'jsonpath-plus';
 
-import type { TransformFn } from './types';
+import type { SchemaObject, TransformFn } from './types';
 
 export interface PathTransformProps {
   /**
@@ -27,7 +27,7 @@ export interface PathTransformProps {
   precompile?: boolean;
 }
 
-export class PathTransform<T extends object> {
+export class PathTransform<T extends SchemaObject> {
   /**
    * Represents the schema object used for transformation.
    *
@@ -81,7 +81,7 @@ export class PathTransform<T extends object> {
      * collect instructions for the json path transformation
      */
     // eslint-disable-next-line array-callback-return
-    const skeleton = traverse(this.schema).map((value, node) => {
+    const skeleton = traverse(this.schema as object).map((value, node) => {
       // Encountered a json path expression
       if (typeof value === 'string' && value.startsWith('$')) {
         const { parent } = node;
