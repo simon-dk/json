@@ -1,6 +1,16 @@
 {
   "name": "@json/path-transform",
   "version": "0.1.1",
+  "description": "Transform JSON objects using JSONPath syntax",
+  "license":"MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simon-dk/json",
+    "directory": "packages/json-path-transform"
+  },
+  "bugs": {
+    "url": "https://github.com/simon-dk/json/issues"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -16,5 +26,11 @@
   },
   "devDependencies": {
     "@json/config": "workspace:*"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }

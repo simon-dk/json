@@ -90,11 +90,11 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
 
-  packages/path-transform:
+  packages/json-path-transform:
     dependencies:
       '@json/traverse':
         specifier: workspace:*
-        version: link:../traverse
+        version: link:../json-traverse
       jsonpath-plus:
         specifier: ^8.1.0
         version: 8.1.0
@@ -103,7 +103,7 @@ importers:
         specifier: workspace:*
         version: link:../config
 
-  packages/traverse:
+  packages/json-traverse:
     devDependencies:
       '@json/config':
         specifier: workspace:*
