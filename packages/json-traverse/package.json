@@ -1,6 +1,16 @@
 {
   "name": "@json/traverse",
   "version": "0.1.0",
+  "description": "Traverse JSON objects",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simon-dk/json",
+    "directory": "packages/json-traverse"
+  },
+  "bugs": {
+    "url": "https://github.com/simon-dk/json/issues"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -12,5 +22,11 @@
   },
   "devDependencies": {
     "@json/config": "workspace:*"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }
