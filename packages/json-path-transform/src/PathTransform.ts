@@ -87,9 +87,7 @@ export class PathTransform<T extends object> {
         const { parent } = node;
 
         // construct the path as "[foo][bar][0][baz]" or "$" for root expressions
-        const path = node.path
-          .map((p) => (p === '$' ? p : `["${p}"]`))
-          .join('');
+        const path = node.path.map((p) => `["${p}"]`).join('');
 
         // collect the instruction
         inststructions.push({ expr: value, path });
@@ -129,10 +127,16 @@ export class PathTransform<T extends object> {
     // Generate sourceCode for each instruction set
     inststructions.forEach((instruction) => {
       // Handle expression saving to the root of the object
-      if (instruction.path === '$') {
+      if (instruction.path === '["$"]') {
         // dont wrap results at root level
         sourceCode.push(
           `Object.assign(returnObject, this.jsonpath({json: value, path: "${instruction.expr}", wrap: false }));`,
+        );
+      } else if (instruction.path.endsWith('["$"]')) {
+        // Handle expression where root is a key in an object
+        const parentPath = instruction.path.slice(0, -5);
+        sourceCode.push(
+          `Object.assign(returnObject${parentPath}, this.jsonpath({json: value, path: "${instruction.expr}", wrap: false }));`,
         );
       } else {
         // If the path is not a root expression, we assign the result to the node
