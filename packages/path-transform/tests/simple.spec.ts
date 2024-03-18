@@ -1,4 +1,4 @@
-import { transform } from '../src/PathTransform';
+import { PathTransform } from '../src/PathTransform';
 
 describe('simple json structures', () => {
   const json = {
@@ -10,41 +10,46 @@ describe('simple json structures', () => {
 
   it('should return the same json', () => {
     const schema = { foo: '$.foo', baz: '$.baz' };
+    const transformer = new PathTransform(schema);
 
     const expected = { foo: json.foo, baz: json.baz };
-    const result = transform({ json, schema });
+    const result = transformer.transform(json);
     expect(result).toEqual(expected);
   });
 
   it('should return the same json when using root', () => {
     const schema = { $: '$' };
+    const transformer = new PathTransform(schema);
 
     const expected = json;
-    const result = transform({ json, schema });
+    const result = transformer.transform(json);
     expect(result).toEqual(expected);
   });
 
   it('should return only the foo property', () => {
     const schema = { foo: '$.foo' };
+    const transformer = new PathTransform(schema);
 
     const expected = { foo: json.foo };
-    const result = transform({ json, schema });
+    const result = transformer.transform(json);
     expect(result).toEqual(expected);
   });
 
   it('should return an item if there are a single', () => {
     const schema = { street: '$.address.street' };
+    const transformer = new PathTransform(schema);
 
     const expected = { street: json.address.street };
-    const transformedData = transform({ json, schema });
-    expect(transformedData).toEqual(expected);
+    const result = transformer.transform(json);
+    expect(result).toEqual(expected);
   });
 
   it('should return an array if there are multiple items', () => {
     const schema = { streets: '$..street' };
+    const transformer = new PathTransform(schema);
 
     const expected = { streets: [json.address.street, json.address2.street] };
-    const transformedData = transform({ json, schema });
-    expect(transformedData).toEqual(expected);
+    const result = transformer.transform(json);
+    expect(result).toEqual(expected);
   });
 });

@@ -1,5 +1,11 @@
 # @json/path-transform
 
+## 0.1.1
+
+### Patch Changes
+
+- updated internals to use aot compiler
+
 ## 0.1.0
 
 ### Minor Changes

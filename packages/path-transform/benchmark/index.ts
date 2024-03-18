@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Suite } from 'benchmark';
 
-import { transform } from '../src/PathTransform';
+import { PathTransform } from '../src/PathTransform';
 
 const suite = new Suite();
 
@@ -42,27 +42,26 @@ const json = {
   },
 };
 
-suite.add('no transform', () => {
-  transform({ json, schema: { $: '$' } });
-});
+const schemas = {
+  root: { $: '$' },
+  allAuthors: { authors: '$..author' },
+  allAuthorsDot: {
+    authors: '$.store.book[*].author',
+  },
 
-suite.add('all authors (double-dot)', () => {
-  transform({ json, schema: { authors: '$..author' } });
-});
+  addKey: {
+    id: '<some-id>',
+    authors: '$.store.book[*].author',
+    titles: '$.store.book[*].title',
+    data: '$',
+  },
+};
 
-suite.add('all authors (dot-notation)', () => {
-  transform({ json, schema: { authors: '$.store.book[*].author' } });
-});
-
-suite.add('add key', () => {
-  transform({
-    json,
-    schema: {
-      id: '<some-id>',
-      authors: '$.store.book[*].author',
-      titles: '$.store.book[*].title',
-      data: '$',
-    },
+// add benchmark for each schema
+Object.entries(schemas).forEach(([key, schema]) => {
+  const transformer = new PathTransform(schema).compile();
+  suite.add(key, () => {
+    transformer(json);
   });
 });
 
@@ -71,14 +70,14 @@ suite
     console.log(String(event.target));
   })
   .on('complete', () => {
-    console.log(`Fastest is ${suite.filter('fastest').map('name')} `);
+    console.log(`\nFastest is ${suite.filter('fastest').map('name')} `);
   })
-  .run({ async: true });
+  .run();
 
-// no transform x 908,917 ops/sec ±0.24% (99 runs sampled)
-// all authors (double-dot) x 324,658 ops/sec ±0.84% (90 runs sampled)
-// all authors dot-notation x 489,046 ops/sec ±1.94% (94 runs sampled)
-// add keys x 222,762 ops/sec ±0.93% (95 runs sampled)
-// Fastest is no transform
+// root x 4,907,733 ops/sec ±0.20% (99 runs sampled)
+// allAuthors x 479,267 ops/sec ±0.35% (100 runs sampled)
+// allAuthorsDot x 1,007,505 ops/sec ±1.30% (96 runs sampled)
+// addKey x 449,904 ops/sec ±0.76% (96 runs sampled)
 
-// 2024-03-14: Tested on M1 MacBook Air 2020 (16GB RAM)
+// Fastest is root
+// 2024-03-18: Tested on M1 MacBook Air 2020 (16GB RAM)
