@@ -1,8 +1,8 @@
 {
   "name": "@saxs/json-path-transform",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Transform JSON objects using JSONPath syntax",
-  "license":"MIT",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/simon-dk/json",

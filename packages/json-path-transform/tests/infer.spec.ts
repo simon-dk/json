@@ -120,14 +120,20 @@ it('should disallow schema with functions or bigint', () => {
   expect(1).toEqual(1);
 });
 
-it('should allow schema with dates, buffer, null', () => {
+it('should not allow schema with dates or buffer', () => {
   const schema1 = { created: new Date('2024-01-01') };
   const schema2 = { buffer: Buffer.from('hello world') };
-  const schema3 = { empty: null };
 
-  type Test1 = Expect<Satisfies<typeof schema1, SchemaObject>>;
-  type Test2 = Expect<Satisfies<typeof schema2, SchemaObject>>;
-  type Test3 = Expect<Satisfies<typeof schema3, SchemaObject>>;
+  type Test1 = ExpectNot<Satisfies<typeof schema1, SchemaObject>>;
+  type Test2 = ExpectNot<Satisfies<typeof schema2, SchemaObject>>;
+
+  expect(1).toEqual(1);
+});
+
+it('should  allow schema with null', () => {
+  const schema = { empty: null };
+
+  type Test = Expect<Satisfies<typeof schema, SchemaObject>>;
 
   expect(1).toEqual(1);
 });
