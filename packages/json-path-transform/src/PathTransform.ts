@@ -27,6 +27,51 @@ export interface PathTransformProps {
   precompile?: boolean;
 }
 
+/**
+ * A class for transforming JSON objects using JSON path expressions.
+ *
+ * This class is designed to be used with a schema object, which is used to generate a transformation function.
+ * As the class creates a AOT compiled function, it is recommended to use it as a singleton.
+ *
+ * The JSON path expressions are used to extract values from the source JSON object and assign them to the target object.
+ *
+ * Documentation for JSON path expressions can be found here: https://goessner.net/articles/JsonPath/
+ *
+ * @example
+ *
+ * const schema = {
+ *  name: '$.user.name',
+ *  petnames: '$.pets..names',
+ *  date: new Date().toISOString(),
+ *  year: 2024,
+ * } as const;
+ *
+ * const transformer = new PathTransform(schema);
+ *
+ * const json = {
+ *   user: {
+ *     name: 'John',
+ *     age: 38,
+ *   },
+ *   pets: [
+ *     { type: 'cat', name: 'Fluffy' },
+ *     { type: 'dog', name: 'Rex' },
+ *   ],
+ * };
+ *
+ * const result = transformer.transform(json);
+ * console.log(result); //{ name: "John", petnames:["Fluffy", "Rex"], date: "2021-08-25T00:00:00.000Z", year: 2024}
+ *
+ * // The overall structure is infered from the schema. All JSONPath keys are unknown, and static data is inferred as their original values.
+ * console.log(result.name); // inferred as type unknown
+ * console.log(result.date); // inferred as type string
+ * console.log(result.year); // inferred as 2024
+ *
+ * // You can also return the compiled function and use it as a transformer
+ * const transform = new PathTransform(schema).compile();
+ * const result = transform(json);
+ * console.log(result); //{ name: "John", petnames:["Fluffy", "Rex"], date: "2021-08-25T00:00:00.000Z", year: 2024}
+ */
 export class PathTransform<T extends SchemaObject> {
   /**
    * Represents the schema object used for transformation.
