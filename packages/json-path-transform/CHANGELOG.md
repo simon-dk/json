@@ -1,5 +1,11 @@
 # @json/path-transform
 
+## 0.2.0
+
+### Minor Changes
+
+- restricted valid types for schema object
+
 ## 0.1.1
 
 ### Patch Changes
