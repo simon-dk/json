@@ -22,7 +22,7 @@
     "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "removeComments": true,
+    "removeComments": false,
     "pretty": true,
     "noImplicitReturns": true
   },
