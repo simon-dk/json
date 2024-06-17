@@ -24,7 +24,7 @@
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
     "tsup": "^8.0.2",
-    "turbo": "^1.12.5",
+    "turbo": "^2.0.4",
     "typescript": "^5.4.5"
   },
   "packageManager": "pnpm@8.9.0",
