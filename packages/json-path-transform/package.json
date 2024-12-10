@@ -22,10 +22,10 @@
   },
   "dependencies": {
     "@saxs/json-traverse": "workspace:*",
-    "jsonpath-plus": "^8.1.0"
+    "jsonpath-plus": "^10.2.0"
   },
   "devDependencies": {
-    "@json/config": "workspace:*"
+    "@saxs/config": "workspace:*"
   },
   "files": [
     "dist"

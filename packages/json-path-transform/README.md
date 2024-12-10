@@ -1,4 +1,4 @@
-# @json/path-transform
+# @saxs/path-transform
 
 Transforms JSON objects using a path-based approach.
 
@@ -13,19 +13,19 @@ The purpose is to make it possible to write declarative transformations for json
 Using npm
 
 ```bash
-npm install @json/path-transform
+npm install @saxs/path-transform
 ```
 
 Using yarn
 
 ```bash
-yarn add @json/path-transform
+yarn add @saxs/path-transform
 ```
 
 Using pnpm
 
 ```bash
-pnpm add @json/path-transform
+pnpm add @saxs/path-transform
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ pnpm add @json/path-transform
 The schema defines the transformation rules. The keys are the target keys and the values are the paths to the source keys.
 
 ```typescript
-import { PathTransform } from '@json/path-transform';
+import { PathTransform } from '@saxs/path-transform';
 
 const schema = {
   name: '$.user.name',
@@ -64,7 +64,7 @@ Exmaples can be found at [https://goessner.net/articles/JsonPath/](https://goess
 The root key can be used to define the root of the object at any given depth. This copies the main object to that level.
 
 ```typescript
-import { PathTransform } from '@json/path-transform';
+import { PathTransform } from '@saxs/path-transform';
 
 const schema = {
   $: '$.user',

@@ -21,7 +21,7 @@
     "benchmark": "npx ts-node benchmark/index.ts"
   },
   "devDependencies": {
-    "@json/config": "workspace:*"
+    "@saxs/config": "workspace:*"
   },
   "files": [
     "dist"
