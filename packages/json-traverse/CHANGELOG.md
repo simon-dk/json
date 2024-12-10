@@ -1,4 +1,4 @@
-# @json/traverse
+# @saxs/traverse
 
 ## 0.1.1
 

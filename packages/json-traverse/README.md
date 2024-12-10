@@ -10,7 +10,7 @@ Using the "forEach" method to modify the object:
 
 ```javascript
 // Using the "forEach" method to modify the object
-import { traverse } from "@json/traverse
+import { traverse } from "@saxs/traverse
 
 const data = {
   name: "John",
@@ -37,7 +37,7 @@ Likewise, using the "map" method to modify the object:
 
 ```javascript
 // Using the "map" method to create a modified
-import { traverse } from "@json/traverse
+import { traverse } from "@saxs/traverse
 
 const data = {
   name: "John",

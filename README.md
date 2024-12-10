@@ -1,5 +1,5 @@
 <div align="center">
-  @JSON⚡️
+  @SAXS⚡️
 </div>
 
 <br/>
@@ -10,9 +10,9 @@
 <br/>
 <br/>
 
-### What is @JSON
+### What is @SAXS
 
-@JSON is a suite of tool aiming to make it easier and faster to work with json files.
+@SAXS is a suite of tool aiming to make it easier and faster to work with json files.
 
 The first two packages aim at making it easy to traverse and transform json files in a declarative way. 
 

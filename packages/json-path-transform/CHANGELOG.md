@@ -1,4 +1,4 @@
-# @json/path-transform
+# @saxs/path-transform
 
 ## 0.2.1
 
@@ -29,4 +29,4 @@
 ### Patch Changes
 
 - Updated dependencies [cb42629]
-  - @json/traverse@0.1.0
+  - @saxs/traverse@0.1.0
