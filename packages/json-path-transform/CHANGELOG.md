@@ -4,7 +4,8 @@
 
 ### Patch Changes
 
-- Updated jsonpath-plus from 10.2 -> 10.3
+- Updated dependencies
+  - jsonpath-plus@10.3.0
 
 ## 0.4.0
 
