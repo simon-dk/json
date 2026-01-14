@@ -1,5 +1,13 @@
 # @saxs/path-transform
 
+## 0.4.0
+
+### Minor Changes
+
+- Fixed naming for a function
+- Fixed an issue where schmas with a "$" key where ordered incorrectly
+- Added better serialization for path segments for safer usage in generated code
+
 ## 0.3.0
 
 ### Minor Changes

@@ -52,4 +52,42 @@ describe('simple json structures', () => {
     const result = transformer.transform(json);
     expect(result).toEqual(expected);
   });
+
+  it('should keep the structure when mixing root with other paths', () => {
+    const schema = { $: '$', street: '$.address.street' };
+    const transformer = new PathTransform(schema);
+
+    const expected = { ...json, street: json.address.street };
+    const result = transformer.transform(json);
+        
+    // the object itself should be equal
+    expect(result).toEqual(expected);
+
+    // the order of the keys should remain the same
+    expect(Object.keys(result)).toEqual(Object.keys(expected));
+  });
+
+  it('should preserve nested order when using root inside objects', () => {
+    const schema = {
+      foo: '$.foo',
+      wrapper: {
+        $: '$',
+        street: '$.address.street',
+      },
+    };
+
+    const transformer = new PathTransform(schema);
+
+    const expected = {
+      foo: json.foo,
+      wrapper: { ...json, street: json.address.street },
+    };
+
+    const result = transformer.transform(json);
+
+    
+
+    expect(result).toEqual(expected);
+    expect(Object.keys(result.wrapper)).toEqual(Object.keys(expected.wrapper));
+  });
 });

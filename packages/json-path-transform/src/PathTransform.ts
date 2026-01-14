@@ -3,6 +3,17 @@ import { JSONPath } from 'jsonpath-plus';
 
 import type { SchemaObject, TransformFn } from './types';
 
+const serializePath = (segments: Array<string | number>) =>
+  segments.map((segment) => {
+    
+    // return [0] instead of ["0"]
+    if (typeof segment === 'number') return `[${segment}]`;
+
+    return `[${JSON.stringify(segment)}]`
+  }).join('');
+
+const serializeJsonPathExpr = (expr: string) => JSON.stringify(expr);
+
 export interface PathTransformProps {
   /**
    * If there is a single return value, decide if it should be wrapped in an array.
@@ -110,7 +121,7 @@ export class PathTransform<T extends SchemaObject> {
 
     const sourceCode: string[] = [];
 
-    const inststructions: Array<{
+    const instructions: Array<{
       /**
        * The json path expression
        */
@@ -132,10 +143,10 @@ export class PathTransform<T extends SchemaObject> {
         const { parent } = node;
 
         // construct the path as "[foo][bar][0][baz]" or "$" for root expressions
-        const path = node.path.map((p) => `["${p}"]`).join('');
+        const path = serializePath(node.path as Array<string | number>);
 
         // collect the instruction
-        inststructions.push({ expr: value, path });
+        instructions.push({ expr: value, path });
 
         // set the leaf value to null for the skeleton object
         node.update(null);
@@ -170,23 +181,24 @@ export class PathTransform<T extends SchemaObject> {
     sourceCode.push(`var returnObject = ${JSON.stringify(skeleton)};`);
 
     // Generate sourceCode for each instruction set
-    inststructions.forEach((instruction) => {
+    instructions.forEach((instruction) => {
+      const exprLiteral = serializeJsonPathExpr(instruction.expr);
       // Handle expression saving to the root of the object
       if (instruction.path === '["$"]') {
-        // dont wrap results at root level
+        // dont wrap or flatten results at root level
         sourceCode.push(
-          `Object.assign(returnObject, this.jsonpath({json: value, path: "${instruction.expr}", wrap: false }));`,
+          `returnObject = Object.assign({}, this.jsonpath({json: value, path: ${exprLiteral}, wrap: false, flatten: false }), returnObject);`,
         );
       } else if (instruction.path.endsWith('["$"]')) {
         // Handle expression where root is a key in an object
         const parentPath = instruction.path.slice(0, -5);
         sourceCode.push(
-          `Object.assign(returnObject${parentPath}, this.jsonpath({json: value, path: "${instruction.expr}", wrap: false }));`,
+          `returnObject${parentPath} = Object.assign({}, this.jsonpath({json: value, path: ${exprLiteral}, wrap: false, flatten: false }), returnObject${parentPath});`,
         );
       } else {
         // If the path is not a root expression, we assign the result to the node
         sourceCode.push(
-          `returnObject${instruction.path} = this.jsonpath({json: value, path: "${instruction.expr}", wrap: this.wrap, flatten: this.flatten});`,
+          `returnObject${instruction.path} = this.jsonpath({json: value, path: ${exprLiteral}, wrap: this.wrap, flatten: this.flatten});`,
         );
       }
     });
