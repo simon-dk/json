@@ -175,13 +175,13 @@ export class PathTransform<T extends SchemaObject> {
       if (instruction.path === '["$"]') {
         // dont wrap results at root level
         sourceCode.push(
-          `Object.assign(returnObject, this.jsonpath({json: value, path: "${instruction.expr}", wrap: false }));`,
+          `returnObject = Object.assign({}, this.jsonpath({json: value, path: "${instruction.expr}", wrap: false }), returnObject);`,
         );
       } else if (instruction.path.endsWith('["$"]')) {
         // Handle expression where root is a key in an object
         const parentPath = instruction.path.slice(0, -5);
         sourceCode.push(
-          `Object.assign(returnObject${parentPath}, this.jsonpath({json: value, path: "${instruction.expr}", wrap: false }));`,
+          `returnObject${parentPath} = Object.assign({}, this.jsonpath({json: value, path: "${instruction.expr}", wrap: false }), returnObject${parentPath});`,
         );
       } else {
         // If the path is not a root expression, we assign the result to the node
