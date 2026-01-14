@@ -1,6 +1,6 @@
 {
   "name": "@saxs/json-path-transform",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Transform JSON objects using JSONPath syntax",
   "license": "MIT",
   "repository": {
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@saxs/json-traverse": "workspace:*",
-    "jsonpath-plus": "^10.2.0"
+    "jsonpath-plus": "^10.3.0"
   },
   "devDependencies": {
     "@saxs/config": "workspace:*"

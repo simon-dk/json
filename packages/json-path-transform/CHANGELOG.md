@@ -1,5 +1,12 @@
 # @saxs/path-transform
 
+## 0.4.1
+
+### Patch Changes
+
+- Updated dependencies
+  - jsonpath-plus@10.3.0
+
 ## 0.4.0
 
 ### Minor Changes
