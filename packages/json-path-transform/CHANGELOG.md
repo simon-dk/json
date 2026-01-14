@@ -1,5 +1,16 @@
 # @saxs/path-transform
 
+## 0.3.0
+
+### Minor Changes
+
+- Updated dependancies
+
+### Patch Changes
+
+- Updated dependencies
+  - @saxs/json-traverse@0.2.0
+
 ## 0.2.1
 
 ### Patch Changes
