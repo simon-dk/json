@@ -5,6 +5,7 @@
 ### Minor Changes
 
 - Updated dependancies
+- Fixed typo in README.md
 
 ### Patch Changes
 
