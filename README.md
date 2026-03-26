@@ -14,7 +14,7 @@
 
 @SAXS is a suite of tool aiming to make it easier and faster to work with json files.
 
-The first two packages aim at making it easy to traverse and transform json files in a declarative way. 
+The first two packages aim at making it easy to traverse and transform json files in a declarative way.
 
 ### Features
 

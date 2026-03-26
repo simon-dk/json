@@ -4,13 +4,14 @@ import { JSONPath } from 'jsonpath-plus';
 import type { SchemaObject, TransformFn } from './types';
 
 const serializePath = (segments: Array<string | number>) =>
-  segments.map((segment) => {
-    
-    // return [0] instead of ["0"]
-    if (typeof segment === 'number') return `[${segment}]`;
+  segments
+    .map((segment) => {
+      // return [0] instead of ["0"]
+      if (typeof segment === 'number') return `[${segment}]`;
 
-    return `[${JSON.stringify(segment)}]`
-  }).join('');
+      return `[${JSON.stringify(segment)}]`;
+    })
+    .join('');
 
 const serializeJsonPathExpr = (expr: string) => JSON.stringify(expr);
 

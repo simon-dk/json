@@ -50,7 +50,6 @@ const data = {
 const transformer = new PathTransform(schema).compile();
 
 console.log(transformer(data)); // { name: 'John Doe', age: 30 }
-
 ```
 
 ## Syntax
@@ -88,9 +87,9 @@ The performance is dependant on the complexity of the schema and the size of the
 
 On a M1 Macbook Air (16GB RAM) we can expect the following performance as seen under the `benchmark` folder.
 
-| Test Name       | ops/sec      | Confidence Interval |
-|-----------------|--------------|---------------------|
-| root            | 4,907,733    | ±0.20%              |
-| allAuthors      | 479,267      | ±0.35%              |
-| allAuthorsDot   | 1,007,505    | ±1.30%              |
-| addKey          | 449,904      | ±0.76%              |
+| Test Name     | ops/sec   | Confidence Interval |
+| ------------- | --------- | ------------------- |
+| root          | 4,907,733 | ±0.20%              |
+| allAuthors    | 479,267   | ±0.35%              |
+| allAuthorsDot | 1,007,505 | ±1.30%              |
+| addKey        | 449,904   | ±0.76%              |
