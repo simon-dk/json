@@ -4,4 +4,4 @@
 '@saxs/config': patch
 ---
 
-Migrated repo to use bun for package manager and testing
+Migrated the workspace to Bun for package management and test execution, updated CI to run with Bun, and refreshed the shared tooling to use the new Bun-based setup.
