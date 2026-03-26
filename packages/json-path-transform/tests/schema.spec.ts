@@ -1,41 +1,5 @@
 import { PathTransform } from '../src/PathTransform';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const json = {
   address: {
     street: 'Main St.',

@@ -1,23 +1,5 @@
 import { PathTransform } from '../src/PathTransform';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 describe('simple arrays', () => {
   const json = [
     { title: 'book1', author: 'author1' },

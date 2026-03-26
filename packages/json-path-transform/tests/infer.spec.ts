@@ -2,22 +2,6 @@
 import { PathTransform } from '../src/PathTransform';
 import type { SchemaObject } from '../src/types';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // helper types to test type inference
 type Expect<T extends true> = T;
 type ExpectNot<T extends false> = T;
