@@ -1,5 +1,23 @@
 import { PathTransform } from '../src/PathTransform';
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 describe('simple arrays', () => {
   const json = [
     { title: 'book1', author: 'author1' },
@@ -12,7 +30,7 @@ describe('simple arrays', () => {
 
     const expected = { books: json };
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 
   it('should return the first item', () => {
@@ -21,7 +39,7 @@ describe('simple arrays', () => {
 
     const expected = { book: json[0] };
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 
   it('should return all titles', () => {
@@ -30,6 +48,6 @@ describe('simple arrays', () => {
 
     const expected = { titles: json.map((item) => item.title) };
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 });

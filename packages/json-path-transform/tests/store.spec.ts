@@ -44,7 +44,7 @@ describe('store example', () => {
 
     const expected = { authors: json.store.book.map((b) => b.author) };
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 
   it('should get all authors by double-dot', () => {
@@ -53,7 +53,7 @@ describe('store example', () => {
 
     const expected = { authors: json.store.book.map((b) => b.author) };
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 
   it('should get all things in the store', () => {
@@ -62,7 +62,7 @@ describe('store example', () => {
 
     const expected = { items: [[...json.store.book], json.store.bicycle] };
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 
   it('should get all prices in the store in a single array', () => {
@@ -75,7 +75,7 @@ describe('store example', () => {
         .concat(json.store.bicycle.price),
     };
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 
   it('should get the third book returned in an array expression', () => {
@@ -84,7 +84,7 @@ describe('store example', () => {
 
     const expected = { book: [json.store.book[2]] };
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 
   it('should get the last book using a logical expression', () => {
@@ -93,7 +93,7 @@ describe('store example', () => {
 
     const expected = { book: [json.store.book[3]] };
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 
   it('should get the last book returned in an array expression', () => {
@@ -102,7 +102,7 @@ describe('store example', () => {
 
     const expected = { book: [json.store.book[3]] };
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 
   it('should get the first two books', () => {
@@ -111,7 +111,7 @@ describe('store example', () => {
 
     const expected = { books: [json.store.book[0], json.store.book[1]] };
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 
   it('should get all books with isbn number', () => {
@@ -120,7 +120,7 @@ describe('store example', () => {
 
     const expected = { books: [json.store.book[2], json.store.book[3]] };
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 
   it('should get all books cheaper than 10', () => {
@@ -129,7 +129,7 @@ describe('store example', () => {
 
     const expected = { books: [json.store.book[0], json.store.book[2]] };
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 
   it('should get all elements in XML document', () => {
@@ -155,6 +155,6 @@ describe('store example', () => {
     };
 
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 });

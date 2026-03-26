@@ -1,26 +1,8 @@
-# @saxs/traverse
+# @saxs/config
 
-## 0.2.1
+## 0.0.1
 
 ### Patch Changes
 
 - 846d24a: Updated workspace dependencies across the monorepo and added the shared TypeScript 6 deprecation setting needed to keep builds working cleanly.
 - 6e312b2: Migrated the workspace to Bun for package management and test execution, updated CI to run with Bun, and refreshed the shared tooling to use the new Bun-based setup.
-
-## 0.2.0
-
-### Minor Changes
-
-- Updated dependancies
-
-## 0.1.1
-
-### Patch Changes
-
-- fixed comments in build output
-
-## 0.1.0
-
-### Minor Changes
-
-- cb42629: Preparing packages for release
