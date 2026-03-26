@@ -16,9 +16,9 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
-    "test": "tsc --noEmit && jest",
-    "test:watch": "jest --watch",
-    "benchmark": "npx ts-node benchmark/index.ts"
+    "test": "tsc --noEmit && bun test",
+    "test:watch": "bun test --watch",
+    "benchmark": "bun run benchmark/index.ts"
   },
   "dependencies": {
     "@saxs/json-traverse": "workspace:*",
