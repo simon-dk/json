@@ -6,7 +6,7 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
+    "lint": "oxlint .",
     "publish-packages": "turbo run build lint test && changeset version && changeset publish",
     "test:watch": "turbo run test:watch",
     "test": "turbo run test"
@@ -19,8 +19,8 @@
     "@types/node": "^25.5.0",
     "benchmark": "^2.1.4",
     "bun-types": "latest",
+    "oxlint": "latest",
     "prettier": "^3.8.1",
-    "ts-node": "^10.9.2",
     "tsup": "^8.5.1",
     "turbo": "^2.8.20",
     "typescript": "^6.0.2"
