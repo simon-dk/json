@@ -38,7 +38,7 @@ it('should copy json to a lower level', () => {
 
   const expected = { foo: json };
   const result = transformer.transform(json);
-  expect(result).toEqual(expected);
+  expect(result).toEqual<unknown>(expected);
   expect(result.foo).not.toBe(json);
 });
 

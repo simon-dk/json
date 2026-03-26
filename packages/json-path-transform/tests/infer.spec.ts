@@ -2,6 +2,22 @@
 import { PathTransform } from '../src/PathTransform';
 import type { SchemaObject } from '../src/types';
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // helper types to test type inference
 type Expect<T extends true> = T;
 type ExpectNot<T extends false> = T;
@@ -74,7 +90,7 @@ it('should infer nested static properties', () => {
   type Test1 = Expect<Equal<typeof result.nested.value, 'here'>>;
   type Test2 = Expect<Equal<typeof result.nested.bicyclePrice, unknown>>;
 
-  expect(result).toEqual(expected);
+  expect(result).toEqual<unknown>(expected);
 });
 
 it('should infer as strings when not using as const', () => {
@@ -88,7 +104,7 @@ it('should infer as strings when not using as const', () => {
   type Test1 = Expect<Equal<typeof result.nested.value, string>>;
   type Test2 = Expect<Equal<typeof result.nested.bicyclePrice, string>>;
 
-  expect(result).toEqual(expected);
+  expect(result).toEqual<unknown>(expected);
 });
 
 it('should add any key value when using a root key', () => {

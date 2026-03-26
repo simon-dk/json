@@ -1,5 +1,41 @@
 import { PathTransform } from '../src/PathTransform';
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const json = {
   address: {
     street: 'Main St.',
@@ -38,7 +74,7 @@ it('should keep the original structure and add a key', () => {
 
   const expected = { ...json, newKey: 'bar' };
   const result = transformer.transform(json);
-  expect(result).toEqual(expected);
+  expect(result).toEqual<unknown>(expected);
 });
 
 it('should add a nested key', () => {
@@ -53,7 +89,7 @@ it('should add a nested key', () => {
     school: { address: json.address.street, phone: '555-111-222' },
   };
   const result = transformer.transform(json);
-  expect(result).toEqual(expected);
+  expect(result).toEqual<unknown>(expected);
 });
 
 it('should add a key in an array', () => {
@@ -62,7 +98,7 @@ it('should add a key in an array', () => {
 
   const expected = { books: ['foo', json.books] };
   const result = transformer.transform(json);
-  expect(result).toEqual(expected);
+  expect(result).toEqual<unknown>(expected);
 });
 
 it('should add a key in an object in an array', () => {
@@ -71,7 +107,7 @@ it('should add a key in an object in an array', () => {
 
   const expected = { books: [{ foo: 'bar' }, json.books] };
   const result = transformer.transform(json);
-  expect(result).toEqual(expected);
+  expect(result).toEqual<unknown>(expected);
 });
 
 it('should get value from circular reference', () => {
@@ -95,7 +131,7 @@ it('should return undefined if no value exists', () => {
 
   const expected = { city: undefined };
   const result = transformer.transform(json);
-  expect(result).toEqual(expected);
+  expect(result).toEqual<unknown>(expected);
 });
 
 it('should return an item if wrap is false', () => {
@@ -113,5 +149,5 @@ it('should return an array if wrap is true', () => {
 
   const expected = { street: [json.address.street] };
   const result = transformer.transform(json);
-  expect(result).toEqual(expected);
+  expect(result).toEqual<unknown>(expected);
 });

@@ -14,7 +14,7 @@ describe('simple json structures', () => {
 
     const expected = { foo: json.foo, baz: json.baz };
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 
   it('should return the same json when using root', () => {
@@ -23,7 +23,7 @@ describe('simple json structures', () => {
 
     const expected = json;
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 
   it('should return only the foo property', () => {
@@ -50,7 +50,7 @@ describe('simple json structures', () => {
 
     const expected = { streets: [json.address.street, json.address2.street] };
     const result = transformer.transform(json);
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
   });
 
   it('should keep the structure when mixing root with other paths', () => {
@@ -59,9 +59,9 @@ describe('simple json structures', () => {
 
     const expected = { ...json, street: json.address.street };
     const result = transformer.transform(json);
-        
+
     // the object itself should be equal
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
 
     // the order of the keys should remain the same
     expect(Object.keys(result)).toEqual(Object.keys(expected));
@@ -85,9 +85,7 @@ describe('simple json structures', () => {
 
     const result = transformer.transform(json);
 
-    
-
-    expect(result).toEqual(expected);
+    expect(result).toEqual<unknown>(expected);
     expect(Object.keys(result.wrapper)).toEqual(Object.keys(expected.wrapper));
   });
 });
