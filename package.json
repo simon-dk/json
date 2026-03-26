@@ -25,5 +25,8 @@
     "turbo": "^2.8.20",
     "typescript": "^6.0.2"
   },
-  "packageManager": "bun@1.2.0"
+  "packageManager": "bun@1.2.0",
+  "trustedDependencies": [
+    "unrs-resolver"
+  ]
 }
