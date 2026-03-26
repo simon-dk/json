@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "dist"
   },
+  "files": ["../../node_modules/bun-types/test-globals.d.ts"],
   "include": ["src", "tests", "benchmark"],
   "exclude": ["node_modules", "dist"]
 }

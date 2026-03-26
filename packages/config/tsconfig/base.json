@@ -25,9 +25,7 @@
     "noUnusedParameters": false,
     "removeComments": false,
     "pretty": true,
-    "noImplicitReturns": true
-  },
-  "ts-node": {
-    "swc": true
-  },
+    "noImplicitReturns": true,
+    "types": ["bun-types"]
+  }
 }

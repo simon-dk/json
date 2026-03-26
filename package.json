@@ -1,11 +1,12 @@
 {
   "name": "json-monorepo",
   "private": true,
+  "workspaces": ["apps/*", "packages/*"],
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
+    "lint": "oxlint .",
     "publish-packages": "turbo run build lint test && changeset version && changeset publish",
     "test:watch": "turbo run test:watch",
     "test": "turbo run test"
@@ -13,22 +14,19 @@
   "devDependencies": {
     "@changesets/cli": "^2.30.0",
     "@saxs/config": "workspace:*",
-    "@swc/core": "^1.15.21",
-    "@swc/jest": "^0.2.39",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/benchmark": "^2.1.5",
-    "@types/jest": "^30.0.0",
     "@types/node": "^25.5.0",
     "benchmark": "^2.1.4",
-    "jest": "^30.3.0",
+    "bun-types": "latest",
+    "oxlint": "latest",
     "prettier": "^3.8.1",
-    "ts-node": "^10.9.2",
     "tsup": "^8.5.1",
     "turbo": "^2.8.20",
     "typescript": "^6.0.2"
   },
-  "packageManager": "pnpm@8.9.0",
-  "engines": {
-    "node": ">=18"
-  }
+  "packageManager": "bun@1.2.0",
+  "trustedDependencies": [
+    "unrs-resolver"
+  ]
 }
