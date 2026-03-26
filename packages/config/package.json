@@ -18,7 +18,6 @@
   },
   "files": [
     "eslint/base.js",
-    "jest/jest.config.ts",
     "tsconfig/base.json"
   ]
 }
