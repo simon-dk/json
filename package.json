@@ -23,7 +23,7 @@
     "prettier": "^3.8.1",
     "tsup": "^8.5.1",
     "turbo": "^2.8.20",
-    "typescript": "^6.0.2"
+    "typescript": "^7.0.2"
   },
   "packageManager": "bun@1.2.0",
   "trustedDependencies": [
