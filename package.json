@@ -12,7 +12,7 @@
     "test": "turbo run test"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.30.0",
+    "@changesets/cli": "^3.0.0",
     "@saxs/config": "workspace:*",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/benchmark": "^2.1.5",
