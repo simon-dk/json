@@ -16,7 +16,7 @@
     "@saxs/config": "workspace:*",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/benchmark": "^2.1.5",
-    "@types/node": "^25.5.0",
+    "@types/node": "^26.4.0",
     "benchmark": "^2.1.4",
     "bun-types": "latest",
     "oxlint": "latest",
